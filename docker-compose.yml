@@ -10,7 +10,7 @@ services:
       context: .
     container_name: beaconprod
     ports:
-      - "5050:5050"
+      - "5090:5050"
     entrypoint: ['python','-m','beacon']
     volumes:
       - ./beacon/logs/logs.log:/beacon/logs/logs.log
@@ -67,10 +67,11 @@ services:
 
   db:
     image: mongo:5
+    command: mongod --port 27023
     hostname: mongo
-    container_name: mongoprod
+    container_name: mongoprodspain
     ports:
-      - 27017:27017
+      - 27023:27023
     environment:
       MONGO_INITDB_ROOT_USERNAME: root
       MONGO_INITDB_ROOT_PASSWORD: example
