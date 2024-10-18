@@ -17,7 +17,7 @@ beacon_name = 'Allele Frequency Beacon GDI Spain'  # Name of the Beacon service
 api_version = 'v2.0.0' # Version of the Beacon implementation
 uri = 'https://beacon-af-spain.ega-archive.org/api/'
 environment = 'test'
-description = r"This Beacon is based on synthetic data hosted at the <a href='https://ega-archive.org/datasets/EGAD00001003338'>EGA</a>. The dataset contains 2504 samples including genetic data based on 1K Genomes data, and 76 individual attributes and phenotypic data derived from UKBiobank."
+description = r"This Beacon is based on synthetic data hosted at GDI Spain Node. It includes the subpop 11.2 fin dataset with allele frequency data."
 version = api_version_yaml['api_version']
 welcome_url = 'https://beacon.ega-archive.org/'
 alternative_url = 'https://beacon.ega-archive.org/api'
@@ -36,12 +36,9 @@ ga4gh_service_type_artifact = 'beacon'
 ga4gh_service_type_version = '1.0'
 
 # Organization info
-org_id = 'EGA'  # Id of the organization
-org_name = 'European Genome-Phenome Archive (EGA)'  # Full name
-org_description = ('The European Genome-phenome Archive (EGA) '
-                   'is a service for permanent archiving and sharing '
-                   'of all types of personally identifiable genetic '
-                   'and phenotypic data resulting from biomedical research projects.')
+org_id = 'GDI Spain'  # Id of the organization
+org_name = 'GDI and Federated EGA (FEGA) Spain'  # Full name
+org_description = ('The GDI and Federated EGA (FEGA) Spanish node is co-managed by the Barcelona Supercomputing Center (BSC) and the Centre de Regulacio Genomica (CRG). It is a service for permanent archiving and sharing of all types of personally identifiable genetic and phenotypic data resulting from biomedical research projects.')
 org_adress = ('C/ Dr. Aiguader, 88'
               'PRBB Building'
               '08003 Barcelona, Spain')
