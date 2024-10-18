@@ -45,8 +45,8 @@ build:
 	docker exec mongoprodspain mongoimport --jsonArray --uri "mongodb://root:example@127.0.0.1:27023/beacon?authSource=admin" --file /tmp/genomicVariations.json --collection genomicVariations
 	docker cp /data/vault/oriol/oriol_beacon_data/pop11_sub2/gv_pop11_sub2_chr20.json mongoprodspain:tmp/genomicVariations.json
 	docker exec mongoprodspain mongoimport --jsonArray --uri "mongodb://root:example@127.0.0.1:27023/beacon?authSource=admin" --file /tmp/genomicVariations.json --collection genomicVariations	
-	docker cp datasets.json mongoprodspain:tmp/datasets.json
-	docker cp individuals.json mongoprodspain:tmp/individuals.json
+	docker cp /data/vault/oriol/oriol_beacon_data/pop11_sub2/datasets.json mongoprodspain:tmp/datasets.json
+	docker cp /data/vault/oriol/oriol_beacon_data/pop11_sub2/individuals.json mongoprodspain:tmp/individuals.json
 	docker exec mongoprodspain mongoimport --jsonArray --uri "mongodb://root:example@127.0.0.1:27023/beacon?authSource=admin" --file /tmp/datasets.json --collection datasets
 	docker exec mongoprodspain mongoimport --jsonArray --uri "mongodb://root:example@127.0.0.1:27023/beacon?authSource=admin" --file /tmp/individuals.json --collection individuals
 	docker exec beaconprod python /beacon/connections/mongo/reindex.py
