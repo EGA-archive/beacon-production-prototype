@@ -1,13 +1,53 @@
 build:
-	docker cp data/analyses.json mongoprod:tmp/analyses.json
-	docker cp data/biosamples.json mongoprod:tmp/biosamples.json
-	docker cp data/cohorts.json mongoprod:tmp/cohorts.json
-	docker cp data/datasets.json mongoprod:tmp/datasets.json
-	docker cp data/genomicVariations.json mongoprod:tmp/genomicVariations.json
-	docker cp data/individuals.json mongoprod:tmp/individuals.json
-	docker exec mongoprod mongoimport --jsonArray --uri "mongodb://root:example@127.0.0.1:27017/beacon?authSource=admin" --file /tmp/datasets.json --collection datasets
-	docker exec mongoprod mongoimport --jsonArray --uri "mongodb://root:example@127.0.0.1:27017/beacon?authSource=admin" --file /tmp/individuals.json --collection individuals
-	docker exec mongoprod mongoimport --jsonArray --uri "mongodb://root:example@127.0.0.1:27017/beacon?authSource=admin" --file /tmp/cohorts.json --collection cohorts
-	docker exec mongoprod mongoimport --jsonArray --uri "mongodb://root:example@127.0.0.1:27017/beacon?authSource=admin" --file /tmp/analyses.json --collection analyses
-	docker exec mongoprod mongoimport --jsonArray --uri "mongodb://root:example@127.0.0.1:27017/beacon?authSource=admin" --file /tmp/biosamples.json --collection biosamples
-	docker exec mongoprod mongoimport --jsonArray --uri "mongodb://root:example@127.0.0.1:27017/beacon?authSource=admin" --file /tmp/genomicVariations.json --collection genomicVariations
+	docker cp /Users/olopezdoriga/Documents/docs2024/GDI/37/gv_pop11_sub2_chr21.json mongoprodspain:tmp/genomicVariations.json
+	docker exec mongoprodspain mongoimport --jsonArray --uri "mongodb://root:example@127.0.0.1:27023/beacon?authSource=admin" --file /tmp/genomicVariations.json --collection genomicVariations
+	docker cp /Users/olopezdoriga/Documents/docs2024/GDI/37/gv_pop11_sub2_chr22.json mongoprodspain:tmp/genomicVariations.json
+	docker exec mongoprodspain mongoimport --jsonArray --uri "mongodb://root:example@127.0.0.1:27023/beacon?authSource=admin" --file /tmp/genomicVariations.json --collection genomicVariations
+	docker cp /Users/olopezdoriga/Documents/docs2024/GDI/37/gv_pop11_sub2_chrX.json mongoprodspain:tmp/genomicVariations.json
+	docker exec mongoprodspain mongoimport --jsonArray --uri "mongodb://root:example@127.0.0.1:27023/beacon?authSource=admin" --file /tmp/genomicVariations.json --collection genomicVariations
+	docker cp /Users/olopezdoriga/Documents/docs2024/GDI/37/gv_pop11_sub2_chr19.json mongoprodspain:tmp/genomicVariations.json
+	docker exec mongoprodspain mongoimport --jsonArray --uri "mongodb://root:example@127.0.0.1:27023/beacon?authSource=admin" --file /tmp/genomicVariations.json --collection genomicVariations
+	docker cp /Users/olopezdoriga/Documents/docs2024/GDI/37/gv_pop11_sub2_chr18.json mongoprodspain:tmp/genomicVariations.json
+	docker exec mongoprodspain mongoimport --jsonArray --uri "mongodb://root:example@127.0.0.1:27023/beacon?authSource=admin" --file /tmp/genomicVariations.json --collection genomicVariations
+	docker cp /Users/olopezdoriga/Documents/docs2024/GDI/37/gv_pop11_sub2_chr17.json mongoprodspain:tmp/genomicVariations.json
+	docker exec mongoprodspain mongoimport --jsonArray --uri "mongodb://root:example@127.0.0.1:27023/beacon?authSource=admin" --file /tmp/genomicVariations.json --collection genomicVariations
+	docker cp /Users/olopezdoriga/Documents/docs2024/GDI/37/gv_pop11_sub2_chr16.json mongoprodspain:tmp/genomicVariations.json
+	docker exec mongoprodspain mongoimport --jsonArray --uri "mongodb://root:example@127.0.0.1:27023/beacon?authSource=admin" --file /tmp/genomicVariations.json --collection genomicVariations
+	docker cp /Users/olopezdoriga/Documents/docs2024/GDI/37/gv_pop11_sub2_chr15.json mongoprodspain:tmp/genomicVariations.json
+	docker exec mongoprodspain mongoimport --jsonArray --uri "mongodb://root:example@127.0.0.1:27023/beacon?authSource=admin" --file /tmp/genomicVariations.json --collection genomicVariations
+	docker cp /Users/olopezdoriga/Documents/docs2024/GDI/37/gv_pop11_sub2_chr14.json mongoprodspain:tmp/genomicVariations.json
+	docker exec mongoprodspain mongoimport --jsonArray --uri "mongodb://root:example@127.0.0.1:27023/beacon?authSource=admin" --file /tmp/genomicVariations.json --collection genomicVariations
+	docker cp /Users/olopezdoriga/Documents/docs2024/GDI/37/gv_pop11_sub2_chr13.json mongoprodspain:tmp/genomicVariations.json
+	docker exec mongoprodspain mongoimport --jsonArray --uri "mongodb://root:example@127.0.0.1:27023/beacon?authSource=admin" --file /tmp/genomicVariations.json --collection genomicVariations
+	docker cp /Users/olopezdoriga/Documents/docs2024/GDI/37/gv_pop11_sub2_chr12.json mongoprodspain:tmp/genomicVariations.json
+	docker exec mongoprodspain mongoimport --jsonArray --uri "mongodb://root:example@127.0.0.1:27023/beacon?authSource=admin" --file /tmp/genomicVariations.json --collection genomicVariations
+	docker cp /Users/olopezdoriga/Documents/docs2024/GDI/37/gv_pop11_sub2_chr11.json mongoprodspain:tmp/genomicVariations.json
+	docker exec mongoprodspain mongoimport --jsonArray --uri "mongodb://root:example@127.0.0.1:27023/beacon?authSource=admin" --file /tmp/genomicVariations.json --collection genomicVariations
+	docker cp /Users/olopezdoriga/Documents/docs2024/GDI/37/gv_pop11_sub2_chr10.json mongoprodspain:tmp/genomicVariations.json
+	docker exec mongoprodspain mongoimport --jsonArray --uri "mongodb://root:example@127.0.0.1:27023/beacon?authSource=admin" --file /tmp/genomicVariations.json --collection genomicVariations
+	docker cp /Users/olopezdoriga/Documents/docs2024/GDI/37/gv_pop11_sub2_chr9.json mongoprodspain:tmp/genomicVariations.json
+	docker exec mongoprodspain mongoimport --jsonArray --uri "mongodb://root:example@127.0.0.1:27023/beacon?authSource=admin" --file /tmp/genomicVariations.json --collection genomicVariations
+	docker cp /Users/olopezdoriga/Documents/docs2024/GDI/37/gv_pop11_sub2_chr8.json mongoprodspain:tmp/genomicVariations.json
+	docker exec mongoprodspain mongoimport --jsonArray --uri "mongodb://root:example@127.0.0.1:27023/beacon?authSource=admin" --file /tmp/genomicVariations.json --collection genomicVariations
+	docker cp /Users/olopezdoriga/Documents/docs2024/GDI/37/gv_pop11_sub2_chr7.json mongoprodspain:tmp/genomicVariations.json
+	docker exec mongoprodspain mongoimport --jsonArray --uri "mongodb://root:example@127.0.0.1:27023/beacon?authSource=admin" --file /tmp/genomicVariations.json --collection genomicVariations
+	docker cp /Users/olopezdoriga/Documents/docs2024/GDI/37/gv_pop11_sub2_chr6.json mongoprodspain:tmp/genomicVariations.json
+	docker exec mongoprodspain mongoimport --jsonArray --uri "mongodb://root:example@127.0.0.1:27023/beacon?authSource=admin" --file /tmp/genomicVariations.json --collection genomicVariations
+	docker cp /Users/olopezdoriga/Documents/docs2024/GDI/37/gv_pop11_sub2_chr5.json mongoprodspain:tmp/genomicVariations.json
+	docker exec mongoprodspain mongoimport --jsonArray --uri "mongodb://root:example@127.0.0.1:27023/beacon?authSource=admin" --file /tmp/genomicVariations.json --collection genomicVariations
+	docker cp /Users/olopezdoriga/Documents/docs2024/GDI/37/gv_pop11_sub2_chr4.json mongoprodspain:tmp/genomicVariations.json
+	docker exec mongoprodspain mongoimport --jsonArray --uri "mongodb://root:example@127.0.0.1:27023/beacon?authSource=admin" --file /tmp/genomicVariations.json --collection genomicVariations
+	docker cp /Users/olopezdoriga/Documents/docs2024/GDI/37/gv_pop11_sub2_chr3.json mongoprodspain:tmp/genomicVariations.json
+	docker exec mongoprodspain mongoimport --jsonArray --uri "mongodb://root:example@127.0.0.1:27023/beacon?authSource=admin" --file /tmp/genomicVariations.json --collection genomicVariations
+	docker cp /Users/olopezdoriga/Documents/docs2024/GDI/37/gv_pop11_sub2_chr2.json mongoprodspain:tmp/genomicVariations.json
+	docker exec mongoprodspain mongoimport --jsonArray --uri "mongodb://root:example@127.0.0.1:27023/beacon?authSource=admin" --file /tmp/genomicVariations.json --collection genomicVariations
+	docker cp /Users/olopezdoriga/Documents/docs2024/GDI/37/gv_pop11_sub2_chr1.json mongoprodspain:tmp/genomicVariations.json
+	docker exec mongoprodspain mongoimport --jsonArray --uri "mongodb://root:example@127.0.0.1:27023/beacon?authSource=admin" --file /tmp/genomicVariations.json --collection genomicVariations
+	docker cp /Users/olopezdoriga/Documents/docs2024/GDI/37/gv_pop11_sub2_chr20.json mongoprodspain:tmp/genomicVariations.json
+	docker exec mongoprodspain mongoimport --jsonArray --uri "mongodb://root:example@127.0.0.1:27023/beacon?authSource=admin" --file /tmp/genomicVariations.json --collection genomicVariations	
+	docker cp /Users/olopezdoriga/Documents/docs2024/GDI/37/datasets.json mongoprodspain:tmp/datasets.json
+	docker cp /Users/olopezdoriga/Documents/docs2024/GDI/37/individuals.json mongoprodspain:tmp/individuals.json
+	docker exec mongoprodspain mongoimport --jsonArray --uri "mongodb://root:example@127.0.0.1:27023/beacon?authSource=admin" --file /tmp/datasets.json --collection datasets
+	docker exec mongoprodspain mongoimport --jsonArray --uri "mongodb://root:example@127.0.0.1:27023/beacon?authSource=admin" --file /tmp/individuals.json --collection individuals
+	docker exec beaconprodspain python /beacon/connections/mongo/reindex.py
+	docker exec beaconprodspain python beacon/connections/mongo/extract_filtering_terms.py
