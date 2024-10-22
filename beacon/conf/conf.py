@@ -18,7 +18,7 @@ beacon_name = 'Allele Frequency Beacon GDI Spain'   # Name of the Beacon service
 api_version = 'v2.0.0' # Version of the Beacon implementation
 uri = 'https://beacon-af-spain.ega-archive.org/api/'
 environment = 'test'
-description = r"This Beacon is based on synthetic data hosted at the <a href='https://ega-archive.org/datasets/EGAD00001003338'>EGA</a>. The dataset contains 2504 samples including genetic data based on 1K Genomes data, and 76 individual attributes and phenotypic data derived from UKBiobank."
+description = r"Allele Frequency Beacon for GDI Spain."
 version = api_version_yaml['api_version']
 welcome_url = 'https://beacon.ega-archive.org/'
 alternative_url = 'https://beacon.ega-archive.org/api'
