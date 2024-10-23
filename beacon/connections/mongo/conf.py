@@ -6,3 +6,4 @@ database_name = 'beacon'
 database_auth_source = 'admin'
 database_certificate = ''
 database_cafile = ''
+database_cluster = False

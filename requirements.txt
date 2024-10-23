@@ -16,7 +16,7 @@ jsonschema-specifications==2023.12.1
 loguru==0.7.2
 pyyaml==6.0.1
 dataclasses-json==0.5.6
-pymongo==4.0.1
+pymongo[srv]==4.0.1
 coverage==7.6.0
 requests==2.25.1
 pydantic==2.6.2
