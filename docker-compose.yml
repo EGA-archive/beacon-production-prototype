@@ -67,7 +67,9 @@ services:
 
   dbspain:
     image: mongo:5
-    command: mongod --port 27023
+    mem_limit: 7500m
+    mem_reservation: 2000M
+    command: mongod --port 27023 --wiredTigerCacheSizeGB 4
     hostname: mongo
     container_name: mongoprodspain
     ports:

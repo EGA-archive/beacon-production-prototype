@@ -5,3 +5,4 @@ logs.log
 beacon/connections/mongo/data/datasets
 beacon/connections/mongo/data/rarediseases
 beacon/connections/mongo/data/rd-connect
+*.vcf.gz
