@@ -71,6 +71,7 @@ client.beacon.genomicVariations.create_index([("variation.location.interval.star
 client.beacon.genomicVariations.create_index([("identifiers.genomicHGVSId", 1)])
 #client.beacon.genomicVariations.create_index([("datasetId", 1), ("variation.location.interval.start.value", 1), ("variation.referenceBases", 1), ("variation.alternateBases", 1)])
 client.beacon.genomicVariations.create_index([("molecularAttributes.geneIds", 1), ("variation.variantType", 1)])
+client.beacon.caseLevelData.create_index([("id", 1), ("datasetId", 1)])
 #client.beacon.individuals.create_index([("$**", "text")])
 #client.beacon.runs.create_index([("$**", "text")])
 #collection_name = client.beacon.analyses

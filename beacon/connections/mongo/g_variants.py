@@ -71,7 +71,11 @@ def get_biosamples_of_variant(self, entry_id: Optional[str], qparams: RequestPar
         query=query_parameters
     query = apply_filters(self, query, qparams.query.filters, collection,query_parameters, dataset)
     HGVSIds = client.beacon.genomicVariations \
-        .find(query, {"identifiers.genomicHGVSId": 1, "_id": 0})
+        .find(query, {"identifiers.genomicHGVSId": 1, "datasetId": 1, "_id": 0})
+    HGVSDataset=HGVSIds[0]["datasetId"]
+    if dataset != HGVSDataset:
+        schema = DefaultSchemas.INDIVIDUALS
+        return schema, 0, 0, [], dataset
     HGVSIds=list(HGVSIds)
     HGVSId=HGVSIds[0]["identifiers"]["genomicHGVSId"]
     queryHGVSId={"datasetId": dataset, "id": HGVSId}
@@ -118,7 +122,11 @@ def get_runs_of_variant(self, entry_id: Optional[str], qparams: RequestParams, d
         query=query_parameters
     query = apply_filters(self, query, qparams.query.filters, collection,query_parameters, dataset)
     HGVSIds = client.beacon.genomicVariations \
-        .find(query, {"identifiers.genomicHGVSId": 1, "_id": 0})
+        .find(query, {"identifiers.genomicHGVSId": 1, "datasetId": 1, "_id": 0})
+    HGVSDataset=HGVSIds[0]["datasetId"]
+    if dataset != HGVSDataset:
+        schema = DefaultSchemas.INDIVIDUALS
+        return schema, 0, 0, [], dataset
     HGVSIds=list(HGVSIds)
     HGVSId=HGVSIds[0]["identifiers"]["genomicHGVSId"]
     queryHGVSId={"datasetId": dataset, "id": HGVSId}
@@ -164,7 +172,11 @@ def get_analyses_of_variant(self, entry_id: Optional[str], qparams: RequestParam
         query=query_parameters
     query = apply_filters(self, query, qparams.query.filters, collection,query_parameters, dataset)
     HGVSIds = client.beacon.genomicVariations \
-        .find(query, {"identifiers.genomicHGVSId": 1, "_id": 0})
+        .find(query, {"identifiers.genomicHGVSId": 1, "datasetId": 1, "_id": 0})
+    HGVSDataset=HGVSIds[0]["datasetId"]
+    if dataset != HGVSDataset:
+        schema = DefaultSchemas.INDIVIDUALS
+        return schema, 0, 0, [], dataset
     HGVSIds=list(HGVSIds)
     HGVSId=HGVSIds[0]["identifiers"]["genomicHGVSId"]
     queryHGVSId={"datasetId": dataset, "id": HGVSId}
@@ -210,18 +222,20 @@ def get_individuals_of_variant(self, entry_id: Optional[str], qparams: RequestPa
         query=query_parameters
     query = apply_filters(self, query, qparams.query.filters, collection,query_parameters, dataset)
     HGVSIds = client.beacon.genomicVariations \
-        .find(query, {"identifiers.genomicHGVSId": 1, "_id": 0})
+        .find(query, {"identifiers.genomicHGVSId": 1, "datasetId": 1, "_id": 0})
     HGVSIds=list(HGVSIds)
+    HGVSDataset=HGVSIds[0]["datasetId"]
+    if dataset != HGVSDataset:
+        schema = DefaultSchemas.INDIVIDUALS
+        return schema, 0, 0, [], dataset
     HGVSId=HGVSIds[0]["identifiers"]["genomicHGVSId"]
-    LOG.debug(HGVSId)
-    queryHGVSId={"datasetId": dataset, "id": HGVSId}
+    queryHGVSId={"datasetId": HGVSDataset, "id": HGVSId}
     string_of_ids = client.beacon.caseLevelData \
         .find(queryHGVSId, {"biosampleIds": 1, "_id": 0})
     targets = client.beacon.targets \
-        .find({"datasetId": dataset}, {"biosampleIds": 1, "_id": 0})
+        .find({"datasetId": HGVSDataset}, {"biosampleIds": 1, "_id": 0})
     targets=list(targets)
     list_of_targets=targets[0]["biosampleIds"]
-    LOG.debug(string_of_ids[0])
     list_of_positions_strings= string_of_ids[0]['biosampleIds'].split(',')
     biosampleIds=[]
     for position in list_of_positions_strings:
