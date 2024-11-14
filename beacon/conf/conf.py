@@ -11,7 +11,7 @@ except Exception as e:# pragma: no cover
     raise_exception(err, errcode)
 
 level=logging.NOTSET
-log_file='beacon/logs/logs.log'
+log_file=None
 beacon_id = 'org.ega-archive.beacon-ri-demo'  # ID of the Beacon
 beacon_name = 'Beacon Reference Implementation demo'  # Name of the Beacon service
 api_version = 'v2.0.0' # Version of the Beacon implementation
