@@ -3,7 +3,7 @@ build:
 	docker exec mongospreg mongoimport --jsonArray --uri "mongodb://root:example@127.0.0.1:27024/beacon?authSource=admin" --file data/caseLevelData/genomicVariations.json --collection genomicVariations
 	cp /data/vault/oriol/oriol_beacon_data/EGAD50000000314/genomicVariations.json data/caseLevelData/genomicVariations.json
 	docker exec mongospreg mongoimport --jsonArray --uri "mongodb://root:example@127.0.0.1:27024/beacon?authSource=admin" --file data/caseLevelData/genomicVariations.json --collection genomicVariations
-	cp /data/vault/oriol/oriol_beacon_data/EGAD00001008392/genomicVariations data/caseLevelData/genomicVariations.json
+	cp /data/vault/oriol/oriol_beacon_data/EGAD00001008392/genomicVariations.json data/caseLevelData/genomicVariations.json
 	docker exec mongospreg mongoimport --jsonArray --uri "mongodb://root:example@127.0.0.1:27024/beacon?authSource=admin" --file data/caseLevelData/genomicVariations.json --collection genomicVariations
 	docker exec beaconspreg python /beacon/connections/mongo/reindex.py	
 	cp /data/vault/oriol/oriol_beacon_data/pop11_sub2/datasets.json data/caseLevelData/datasets.json
