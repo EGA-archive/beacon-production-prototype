@@ -1,23 +1,23 @@
 version: '3.1'
 
 networks:
-  idp-priv:
-  pub:
+  idp-priv-spain:
+  pub-spain:
 
 services:
-  beaconprod:
+  beaconspreg:
     build:
       context: .
-    container_name: beaconprod
+    container_name: beaconspreg
     ports:
-      - "5050:5050"
+      - "5091:5050"
     entrypoint: ['python','-m','beacon']
     volumes:
       - ./beacon/logs/logs.log:/beacon/logs/logs.log
       - ./beacon/conf/conf.py:/beacon/conf/conf.py
       - ./beacon/permissions:/beacon/permissions
     networks:
-      - pub
+      - pub-spain
 
   idp:
     #image: quay.io/keycloak/keycloak:12.0.0
@@ -36,7 +36,7 @@ services:
       - DB_ADDR=idp-db
       - DB_PORT=5432
       - DB_DATABASE=keycloak
-      #- DB_SCHEMA=public
+      #- DB_SCHEMA=pub-spainlic
       - KEYCLOAK_IMPORT=/tmp/beacon-realm.json -Dkeycloak.profile.feature.upload_scripts=enabled -Dkeycloak.profile.feature.token_exchange=enabled -Dkeycloak.profile.feature.admin_fine_grained_authz=enabled
       - KEYCLOAK_HOSTNAME=localhost
       #- KC_HOSTNAME_URL=https://beacon-network-test2.ega-archive.org
@@ -49,8 +49,8 @@ services:
       - "8080:8080"
       - "9991:8443"
     networks:
-      - idp-priv 
-      - pub
+      - idp-priv-spain 
+      - pub-spain
     depends_on:
       - idp-db
 
@@ -63,15 +63,17 @@ services:
       - POSTGRES_USER=admin
       - POSTGRES_PASSWORD=secret
     networks:
-      - idp-priv
+      - idp-priv-spain
 
-  db:
+  dbspreg:
     image: mongo:5
-    command: --wiredTigerCacheSizeGB 4
+    mem_limit: 7500m
+    mem_reservation: 2000M
+    command: --port 27024 --wiredTigerCacheSizeGB 4
     hostname: mongo
-    container_name: mongoprod
+    container_name: mongospreg
     ports:
-      - 27017:27017
+      - 27024:27024
     environment:
       MONGO_INITDB_ROOT_USERNAME: root
       MONGO_INITDB_ROOT_PASSWORD: example
@@ -80,7 +82,7 @@ services:
       - ./beacon/connections/mongo/mongo-init/:/docker-entrypoint-initdb.d/:ro
       - ./beacon/connections/mongo/data/:/data
     networks:
-      - pub
+      - pub-spain
     #command: --verbose
 
   beacon-ri-tools:
@@ -88,7 +90,7 @@ services:
     hostname: beacon-ri-tools
     container_name: ri-tools
     networks:
-      - pub
+      - pub-spain
     tty: true
     volumes:
       - ./ri-tools/output_docs:/usr/src/app/output_docs
