@@ -64,3 +64,7 @@ build:
 
 	docker exec beaconspreg python /beacon/connections/mongo/reindex.py
 	docker exec beaconspreg python beacon/connections/mongo/extract_filtering_terms.py
+
+	docker exec mongospreg /bin/bash -c 'mongo beacon -u root -p example -port 27024 --authenticationDatabase admin --eval "db.filtering_terms.insertMany([{\"type\": \"custom\", \"id\": \"diseases.diseaseCode:colorectal cancer\", \"scopes\": [\"individual\"]}])"'
+	docker exec mongospreg /bin/bash -c 'mongo beacon -u root -p example -port 27024 --authenticationDatabase admin --eval "db.filtering_terms.insertMany([{\"type\": \"ontology\", \"id\": \"MONDO:0005575\", \"label\": \"colorectal cancer\", \"scopes\": [\"individual\"]}])"'
+	docker exec mongospreg /bin/bash -c 'mongo beacon -u root -p example -port 27024 --authenticationDatabase admin --eval "db.synonyms.insertMany([{\"id\":\"DOID:9256\",\"synonym\":\"MONDO:0005575\"},{\"id\":\"ICD10:C18\",\"synonym\":\"MONDO:0005575\"},{\"id\":\"NCIT:C2955\",\"synonym\":\"MONDO:0005575\"}])"'
