@@ -595,6 +595,7 @@ def apply_ontology_filter(self, query: dict, filter: OntologyFilter, collection:
             dict_regex={}
             try:
                 dict_regex['$regex']=label
+                dict_regex['$options']='i'
             except Exception:
                 dict_regex['$regex']=''
             dict_id={}
@@ -668,6 +669,7 @@ def apply_ontology_filter(self, query: dict, filter: OntologyFilter, collection:
         dict_regex={}
         try:
             dict_regex['$regex']=label
+            dict_regex['$options']='i'
         except Exception:# pragma: no cover
             dict_regex['$regex']=''
         dict_id={}
@@ -696,7 +698,6 @@ def apply_ontology_filter(self, query: dict, filter: OntologyFilter, collection:
                 query_id[query_term]=simil
                 new_query['$or'].append(query_id)
             query = new_query
-        
         query=cross_query(self, query, scope, collection, request_parameters, dataset)
 
             
@@ -723,6 +724,7 @@ def apply_ontology_filter(self, query: dict, filter: OntologyFilter, collection:
         query_filtering['$and'].append(dict_scope)
         dict_regex={}
         dict_regex['$regex']=label
+        dict_regex['$options']='i'
         dict_id={}
         dict_id['id']=dict_regex
         query_filtering['$and'].append(dict_id)
@@ -1000,6 +1002,7 @@ def apply_alphanumeric_filter(self, query: dict, filter: AlphanumericFilter, col
             dict_id={}
             dict_regex={}
             dict_regex['$regex']=filter.id
+            dict_regex['$options']='i'
             dict_type['type']='custom'
             dict_id['id']=dict_regex
             query_filtering['$and'].append(dict_type)

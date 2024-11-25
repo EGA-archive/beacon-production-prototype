@@ -216,6 +216,17 @@ class RequestParams(CamelModel):
                     self.query.request_parameters[k] = html.escape(v)
                 elif k == 'filters':
                     self.query.request_parameters[k] = html.escape(v)
+                elif k == 'testMode':
+                    v = html.escape(v)
+                    if v.lower() == 'true':
+                        v = True
+                    elif v.lower() == 'false':
+                        v = False
+                    else:
+                        err = 'testMode parameter can only be either true or false value'
+                        errcode=400
+                        raise_exception(err, errcode)
+                    self.query.test_mode = v
                 elif k in ["start", "end", "assemblyId", "referenceName", "referenceBases", "alternateBases", "variantType","variantMinLength","variantMaxLength","geneId","genomicAlleleShortForm","aminoacidChange","clinicalRelevance", "mateName"]:
                     try:
                         if ',' in v:# pragma: no cover

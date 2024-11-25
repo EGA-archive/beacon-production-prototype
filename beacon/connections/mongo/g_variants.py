@@ -65,16 +65,16 @@ def get_biosamples_of_variant(self, entry_id: Optional[str], qparams: RequestPar
     query = {"$and": [{"variantInternalId": entry_id}]}
     query_parameters, parameters_as_filters = apply_request_parameters(self, query, qparams, dataset)
     if parameters_as_filters == True:
-        query, parameters_as_filters = apply_request_parameters(self, {}, qparams, dataset)# pragma: no cover
+        query, parameters_as_filters = apply_request_parameters(self, query, qparams, dataset)# pragma: no cover
         query_parameters={}# pragma: no cover
     else:
         query=query_parameters
-    query = apply_filters(self, query, qparams.query.filters, collection,query_parameters, dataset)
+    collection='biosamples'
     HGVSIds = client.beacon.genomicVariations \
         .find(query, {"identifiers.genomicHGVSId": 1, "datasetId": 1, "_id": 0})
     HGVSDataset=HGVSIds[0]["datasetId"]
     if dataset != HGVSDataset:
-        schema = DefaultSchemas.INDIVIDUALS
+        schema = DefaultSchemas.BIOSAMPLES
         return schema, 0, 0, [], dataset
     HGVSIds=list(HGVSIds)
     HGVSId=HGVSIds[0]["identifiers"]["genomicHGVSId"]
@@ -116,11 +116,11 @@ def get_runs_of_variant(self, entry_id: Optional[str], qparams: RequestParams, d
     query = {"$and": [{"variantInternalId": entry_id}]}
     query_parameters, parameters_as_filters = apply_request_parameters(self, query, qparams, dataset)
     if parameters_as_filters == True:
-        query, parameters_as_filters = apply_request_parameters(self, {}, qparams, dataset)# pragma: no cover
+        query, parameters_as_filters = apply_request_parameters(self, query, qparams, dataset)# pragma: no cover
         query_parameters={}# pragma: no cover
     else:
         query=query_parameters
-    query = apply_filters(self, query, qparams.query.filters, collection,query_parameters, dataset)
+    collection='runs'
     HGVSIds = client.beacon.genomicVariations \
         .find(query, {"identifiers.genomicHGVSId": 1, "datasetId": 1, "_id": 0})
     HGVSDataset=HGVSIds[0]["datasetId"]
@@ -166,11 +166,11 @@ def get_analyses_of_variant(self, entry_id: Optional[str], qparams: RequestParam
     query = {"$and": [{"variantInternalId": entry_id}]}
     query_parameters, parameters_as_filters = apply_request_parameters(self, query, qparams, dataset)
     if parameters_as_filters == True:
-        query, parameters_as_filters = apply_request_parameters(self, {}, qparams, dataset)# pragma: no cover
+        query, parameters_as_filters = apply_request_parameters(self, query, qparams, dataset)# pragma: no cover
         query_parameters={}# pragma: no cover
     else:
         query=query_parameters
-    query = apply_filters(self, query, qparams.query.filters, collection,query_parameters, dataset)
+    collection='analyses'
     HGVSIds = client.beacon.genomicVariations \
         .find(query, {"identifiers.genomicHGVSId": 1, "datasetId": 1, "_id": 0})
     HGVSDataset=HGVSIds[0]["datasetId"]
