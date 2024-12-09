@@ -20,7 +20,7 @@ services:
       - pub
 
   idp:
-    #image: quay.io/keycloak/keycloak:12.0.0
+    #image: quay.io/keycloak/keycloak:19.0.1
     image: sleighzy/keycloak
     hostname: idp
     container_name: idp
@@ -28,8 +28,8 @@ services:
       # - KEYCLOAK_FRONTEND_URL=http://idp:8080/auth
       # - KEYCLOAK_LOGLEVEL=DEBUG
       # - ROOT_LOGLEVEL=DEBUG
-      - KEYCLOAK_USER=admin
-      - KEYCLOAK_PASSWORD=secret
+      - KEYCLOAK_ADMIN=admin
+      - KEYCLOAK_ADMIN_PASSWORD=secret 
       - DB_USER=admin
       - DB_PASSWORD=secret
       - DB_VENDOR=postgres
@@ -39,6 +39,7 @@ services:
       #- DB_SCHEMA=public
       - KEYCLOAK_IMPORT=/tmp/beacon-realm.json -Dkeycloak.profile.feature.upload_scripts=enabled -Dkeycloak.profile.feature.token_exchange=enabled -Dkeycloak.profile.feature.admin_fine_grained_authz=enabled
       - KEYCLOAK_HOSTNAME=localhost
+      - KC_FEATURES=scripts,token-exchange,admin-fine-grained-authz
       #- KC_HOSTNAME_URL=https://beacon-network-test2.ega-archive.org
       #- KC_HOSTNAME_ADMIN_URL=https://beacon-network-test2.ega-archive.org
       #- KEYCLOAK_FRONTEND_URL=https://beacon-network-test2.ega-archive.org/auth/
@@ -82,6 +83,53 @@ services:
     networks:
       - pub
     #command: --verbose
+
+  idp2:
+    image: quay.io/keycloak/keycloak:19.0.1
+    #image: sleighzy/keycloak
+    hostname: idp2
+    container_name: idp2
+    environment:
+      # - KEYCLOAK_FRONTEND_URL=http://idp:8080/auth
+      # - KEYCLOAK_LOGLEVEL=DEBUG
+      # - ROOT_LOGLEVEL=DEBUG
+      - KEYCLOAK_ADMIN=admin
+      - KEYCLOAK_ADMIN_PASSWORD=secret 
+      - DB_USER=admin
+      - DB_PASSWORD=secret
+      - DB_VENDOR=postgres
+      - DB_ADDR=idp-db
+      - DB_PORT=5432
+      - DB_DATABASE=keycloak
+      #- DB_SCHEMA=public
+      - KEYCLOAK_IMPORT=/tmp/beacon-realm.json -Dkeycloak.profile.feature.upload_scripts=enabled -Dkeycloak.profile.feature.token_exchange=enabled -Dkeycloak.profile.feature.admin_fine_grained_authz=enabled
+      - KEYCLOAK_HOSTNAME=localhost
+      - KC_FEATURES=scripts,token-exchange,admin-fine-grained-authz
+      #- KC_HOSTNAME_URL=https://beacon-network-test2.ega-archive.org
+      #- KC_HOSTNAME_ADMIN_URL=https://beacon-network-test2.ega-archive.org
+      #- KEYCLOAK_FRONTEND_URL=https://beacon-network-test2.ega-archive.org/auth/
+      #- PROXY_ADDRESS_FORWARDING=true
+    volumes:
+      - ./beacon/auth/realms/beacon-realm.json:/tmp/beacon-realm.json
+    command: ["start-dev", "--http-port=11111"]
+    ports:
+      - "11111:11111"
+    networks:
+      - idp-priv 
+      - pub
+    depends_on:
+      - idp-db2
+
+  idp-db2:
+    image: postgres
+    hostname: idp-db2
+    container_name: idp-db2
+    environment:
+      - POSTGRES_DB=keycloak
+      - POSTGRES_USER=admin
+      - POSTGRES_PASSWORD=secret
+    networks:
+      - idp-priv
 
   beacon-ri-tools:
     image: ghcr.io/ega-archive/beacon2-ri-tools-v2:latest
