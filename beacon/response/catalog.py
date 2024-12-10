@@ -314,7 +314,7 @@ def build_configuration(self):
                 'productionStatus': conf.environment.upper()
             },
             'securityAttributes': {
-                'defaultGranularity': conf.default_beacon_granularity,
+                'defaultGranularity': conf.max_beacon_granularity,
                 'securityLevels': conf.security_levels
             },
             'entryTypes': entry_types['entryTypes']
