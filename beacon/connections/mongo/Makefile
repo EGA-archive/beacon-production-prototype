@@ -16,3 +16,14 @@ build:
 	docker exec mongoprod mongoimport --jsonArray --uri "mongodb://root:example@127.0.0.1:27017/beacon?authSource=admin" --file /data/GCAT/genomicVariations_chr14.json --collection genomicVariations
 	docker exec mongoprod mongoimport --jsonArray --uri "mongodb://root:example@127.0.0.1:27017/beacon?authSource=admin" --file /data/GCAT/genomicVariations.json --collection genomicVariations
 	docker exec mongoprod mongoimport --jsonArray --uri "mongodb://root:example@127.0.0.1:27017/beacon?authSource=admin" --file /data/GCAT/male_genomicVariations.json --collection genomicVariations
+	docker exec mongoprod mongoimport --jsonArray --uri "mongodb://root:example@127.0.0.1:27017/beacon?authSource=admin" --file /data/GCAT/gnomAD_datasets.json --collection datasets
+	docker exec mongoprod mongoimport --jsonArray --uri "mongodb://root:example@127.0.0.1:27017/beacon?authSource=admin" --file /data/GCAT/gnomAD_chr1.json --collection genomicVariations
+	docker exec mongoprod mongoimport --jsonArray --uri "mongodb://root:example@127.0.0.1:27017/beacon?authSource=admin" --file /data/GCAT/gnomAD_chr2.json --collection genomicVariations
+	docker exec mongoprod mongoimport --jsonArray --uri "mongodb://root:example@127.0.0.1:27017/beacon?authSource=admin" --file /data/GCAT/gnomAD_chr3.json --collection genomicVariations
+	docker exec mongoprod mongoimport --jsonArray --uri "mongodb://root:example@127.0.0.1:27017/beacon?authSource=admin" --file /data/GCAT/gnomAD_chr4.json --collection genomicVariations
+	docker exec mongoprod mongoimport --jsonArray --uri "mongodb://root:example@127.0.0.1:27017/beacon?authSource=admin" --file /data/GCAT/gnomAD_chr5.json --collection genomicVariations
+	docker exec mongoprod mongoimport --jsonArray --uri "mongodb://root:example@127.0.0.1:27017/beacon?authSource=admin" --file /data/GCAT/gnomAD_chr6.json --collection genomicVariations
+	docker exec mongoprod mongoimport --jsonArray --uri "mongodb://root:example@127.0.0.1:27017/beacon?authSource=admin" --file /data/GCAT/gnomAD_chr7.json --collection genomicVariations
+	docker exec mongoprod mongoimport --jsonArray --uri "mongodb://root:example@127.0.0.1:27017/beacon?authSource=admin" --file /data/GCAT/gnomAD_chr8_chr9_chr10_chr11.json --collection genomicVariations
+	docker exec mongoprod mongoimport --jsonArray --uri "mongodb://root:example@127.0.0.1:27017/beacon?authSource=admin" --file /data/GCAT/gnomAD_chr12_to_chr22_chrX_chrY.json --collection genomicVariations
+	docker exec beaconprod python /beacon/connections/mongo/reindex.py
