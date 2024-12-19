@@ -69,7 +69,7 @@ services:
     image: mongo:5
     mem_limit: 7500m
     mem_reservation: 2000M
-    command: --wiredTigerCacheSizeGB 4
+    command: --wiredTigerCacheSizeGB 6
     hostname: mongo
     container_name: mongoprod
     ports:
@@ -81,6 +81,9 @@ services:
     volumes:
       - ./beacon/connections/mongo/mongo-init/:/docker-entrypoint-initdb.d/:ro
       - ./beacon/connections/mongo/data/:/data
+      - ./beacon/connections/mongo/data/db:/data/db
+      - ./beacon/connections/mongo/data/configdb:/data/configdb
+      - ./beacon/connections/mongo/data/caseLevelData:/data/caseLevelData
     networks:
       - pub
     #command: --verbose
